@@ -1,5 +1,6 @@
 # HC-NeRF
-
+## Hierarchical Collision Based Radiance Field Representation with Implicit Feature Fine-tuning
+[arxiv]()  
 ![image](./assets/pipeline_2nd.png)
 
 ## Installation
@@ -8,8 +9,8 @@
 
 Install environment:
 ```
-conda create -n HashRF python=3.8
-conda activate HashRF
+conda create -n hcnerf python=3.8
+conda activate hcnerf
 pip install torch torchvision
 pip install tqdm scikit-image opencv-python configargparse lpips imageio-ffmpeg kornia lpips tensorboard
 ```
