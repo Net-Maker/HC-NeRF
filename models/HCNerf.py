@@ -1,5 +1,4 @@
 from .tensorBase import *
-import tinycudann
 
 def positional_encoding(positions, freqs):
     
@@ -66,9 +65,9 @@ class MLPRes_color(torch.nn.Module): # 为颜色设计的补全MLP，输入为�
         
         
 
-class TensorVMSplit(TensorBase):
+class HCNerf(TensorBase):
     def __init__(self, aabb, gridSize, device, **kargs):
-        super(TensorVMSplit, self).__init__(aabb, gridSize, device, **kargs)
+        super(HCNerf, self).__init__(aabb, gridSize, device, **kargs)
         self.extra_mlp = [
             MLPRes_density(3+self.density_n_comp[0]+self.density_n_comp[0],self.density_n_comp[0]).to(device),
             MLPRes_density(3+self.density_n_comp[1]+self.density_n_comp[1],self.density_n_comp[1]).to(device),

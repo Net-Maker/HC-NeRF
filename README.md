@@ -1,4 +1,7 @@
-# HashRF
+# HC-NeRF
+
+![image](./assets/pipeline_2nd.png)
+
 ## Installation
 
 #### Tested on Ubuntu 20.04 + Pytorch 1.10.1 
@@ -9,9 +12,6 @@ conda create -n HashRF python=3.8
 conda activate HashRF
 pip install torch torchvision
 pip install tqdm scikit-image opencv-python configargparse lpips imageio-ffmpeg kornia lpips tensorboard
-# install tiny-cuda-nn(NGP)
-cd Dependency/tiny-cuda-nn/bindings/torch
-python setup.py install
 ```
 
 
@@ -40,9 +40,6 @@ we provide a few examples in the configuration folder, please note:
 
  `dataset_name`, choices = ['blender', 'llff', 'nsvf', 'tankstemple'];
 
- `shadingMode`, choices = ['MLP_Fea', 'MLP_Res'];
-
- `model_name`, choices = ['HashSplit','Hash']
 
 
 
@@ -58,13 +55,7 @@ You can just simply pass `--render_only 1` and `--ckpt path/to/your/checkpoint` 
 checkpoint. You may also need to specify what you want to render, like `--render_test 1`, `--render_train 1` or `--render_path 1`.
 The rendering results are located in your checkpoint folder. 
 
-## Extracting mesh
-You can also export the mesh by passing `--export_mesh 1`:
-```
-python train.py --config configs/lego.txt --ckpt path/to/your/checkpoint --export_mesh 1
-```
-Note: Please re-train the model and don't use the pretrained checkpoints provided by us for mesh extraction, 
-because some render parameters has changed.
+pretrained model: [google drive](https://drive.google.com/drive/folders/1kgEAVNDjS3ioN3aN-H7xgTrvfKRv6pX0?usp=drive_link)
 
 ## Training with your own data
 We provide two options for training on your own image set:
@@ -72,6 +63,8 @@ We provide two options for training on your own image set:
 1. Following the instructions in the [NSVF repo](https://github.com/facebookresearch/NSVF#prepare-your-own-dataset), then set the dataset_name to 'tankstemple'.
 2. Calibrating images with the script from [NGP](https://github.com/NVlabs/instant-ngp/blob/master/docs/nerf_dataset_tips.md):
 `python dataLoader/colmap2nerf.py --colmap_matcher exhaustive --run_colmap`, then adjust the datadir in `configs/your_own_data.txt`. Please check the `scene_bbox` and `near_far` if you get abnormal results.
+
+note that our coordination system is different from original nerf's system
     
 
 ## Citation
@@ -83,17 +76,5 @@ citing:
   title = {TensoRF: Tensorial Radiance Fields},
   booktitle = {European Conference on Computer Vision (ECCV)},
   year = {2022}
-}
-```
-and [Tiny-cuda-nn(Instant-NGP)](https://github.com/NVlabs/tiny-cuda-nn)
-```
-@software{tiny-cuda-nn,
-	author = {M\"uller, Thomas},
-	license = {BSD-3-Clause},
-	month = {4},
-	title = {{tiny-cuda-nn}},
-	url = {https://github.com/NVlabs/tiny-cuda-nn},
-	version = {1.7},
-	year = {2021}
 }
 ```
